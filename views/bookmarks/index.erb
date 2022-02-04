@@ -13,6 +13,9 @@
       <form action="/bookmarks/<%= bookmark.id %>/edit" method="get">
         <input type="submit" value="Edit" />
       </form>
+      <form action="bookmarks/<%= bookmark.id %>/comments/new" method="get">
+        <input type="submit" value="Add comment">
+      </form>
     </li>
   <% end %>
 </ul>
@@ -21,3 +24,5 @@
 <form method="get" action="/bookmarks/new">
     <button type="submit">Add a new bookmark</button>
 </form>
+
+

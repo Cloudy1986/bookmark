@@ -1,0 +1,8 @@
+<h1>Add a comment</h1>
+
+<h2><%= @bookmark.title %> - <%= @bookmark.url %></h2>
+
+<form action="/bookmarks/<%= @bookmark.id %>/comments" method="post">
+  <input type="text" name="comment" placeholder="Add your comment here">
+  <input type="submit" value="Submit">
+</form>
