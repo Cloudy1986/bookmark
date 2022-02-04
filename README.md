@@ -2,10 +2,39 @@
 
 ## User stories
 
+Show a list of bookmarks ✅
 ```
 **As a** user
 **I want** to see a list of bookmarks
-**So that** I can find a link to the site or page I need
+**So that** I can find a link to the site or page I need quickly
+```
+
+Add new bookmarks ✅
+```
+**As a** user
+**I want** to add a bookmark to the list
+**So that** I can store a link to a site I want to find again quickly in the future
+```
+
+Delete bookmarks ✅
+```
+**As a** user
+**I want** to delete a bookmark from the list
+**So that** I don't store links to sites that I don't need anymore
+```
+
+Update bookmarks ✅
+```
+**As a** user
+**I want** to update a bookmark in the list
+**So that** I can give it a more descriptive title and find it in the list quickly
+```
+
+Comment on bookmarks ✅
+```
+**As a** user
+**I want** to comment on a bookmark in the list
+**So that** I can add useful notes that remind me why the site is useful
 ```
 
 ## Database set up instructions
