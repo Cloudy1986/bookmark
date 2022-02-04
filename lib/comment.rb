@@ -20,4 +20,16 @@ class Comment
     Comment.new(id: result[0]['id'], text: result[0]['text'], bookmark_id: result[0]['bookmark_id'])
   end
 
+  def self.where(bookmark_id:)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'bookmark_manager_post_course_test')
+    else
+      connection = PG.connect(dbname: 'bookmark_manager_post_course')
+    end
+    results = connection.exec_params("SELECT * FROM comments WHERE bookmark_id = $1;", [bookmark_id])
+    results.map do |comment|
+      Comment.new(id: comment['id'], text: comment['text'], bookmark_id: comment['bookmark_id'])
+    end
+  end
+
 end

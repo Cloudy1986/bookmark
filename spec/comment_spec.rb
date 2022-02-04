@@ -19,4 +19,23 @@ describe Comment do
     end
   end
 
+  describe '.where' do
+    it 'gets the relevant comments from the database' do
+      bookmark = Bookmark.create(url: 'Test url 1', title: 'Test title 1')
+      Comment.create(text: 'This is a test comment', bookmark_id: bookmark.id)
+      Comment.create(text: 'This is another test comment', bookmark_id: bookmark.id)
+
+      comments = Comment.where(bookmark_id: bookmark.id)
+      comment = comments.first
+
+      connection2 = PG.connect(dbname: 'bookmark_manager_post_course_test')
+      result2 = connection2.exec("SELECT * FROM comments WHERE id = #{comment.id};")
+
+      expect(comments.length).to eq 2
+      expect(comment.id).to eq result2[0]['id']
+      expect(comment.text).to eq 'This is a test comment'
+      expect(comment.bookmark_id).to eq bookmark.id
+    end
+  end
+
 end

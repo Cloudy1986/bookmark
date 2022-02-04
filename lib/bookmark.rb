@@ -61,4 +61,14 @@ class Bookmark
     Bookmark.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
   end
 
+  def comments(comment_class = Comment)
+    # if ENV['ENVIRONMENT'] == 'test'
+    #   connection = PG.connect(dbname: 'bookmark_manager_post_course_test')
+    # else
+    #   connection = PG.connect(dbname: 'bookmark_manager_post_course')
+    # end
+    # result = connection.exec_params("SELECT * FROM comments WHERE bookmark_id = $1;", [id])
+    comment_class.where(bookmark_id: id)
+  end
+
 end
