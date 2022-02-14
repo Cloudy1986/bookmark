@@ -65,8 +65,8 @@ class BookmarkManager < Sinatra::Base
     redirect '/bookmarks'
   end
 
-  get '/log-in' do
-    erb :'users/log_in'
+  get '/log-in/new' do
+    erb :'users/log_in_new'
   end
 
   post '/log-in' do
@@ -75,7 +75,7 @@ class BookmarkManager < Sinatra::Base
       session[:user_id] = user.id
       redirect '/bookmarks'
     else
-      redirect '/log-in'
+      redirect '/log-in/new'
     end
   end
 
