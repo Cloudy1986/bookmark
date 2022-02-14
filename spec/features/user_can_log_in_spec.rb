@@ -19,4 +19,15 @@ feature 'Log in' do
     expect(page).not_to have_content 'Welcome feature@example.com'
     expect(page).to have_content 'Please check your email or password.'
   end
+
+  scenario 'user sees an error if they get their password wrong' do
+    User.create(email: 'feature@example.com', password: '758485y4389')
+    visit '/log-in'
+    fill_in 'email', with: 'feature@example.com'
+    fill_in 'password', with: 'jkdaiuireyt'
+    click_button 'Log in'
+
+    expect(page).not_to have_content 'Welcome feature@example.com'
+    expect(page).to have_content 'Please check your email or password.'
+  end
 end
