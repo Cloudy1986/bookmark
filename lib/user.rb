@@ -39,6 +39,7 @@ class User
       connection = PG.connect(dbname: 'bookmark_manager_post_course')
     end
     result = connection.exec_params("SELECT * FROM users WHERE email = $1;", [email])
+    return unless result.any?
     User.new(id: result[0]['id'], email: result[0]['email'])
   end
 
