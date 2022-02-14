@@ -65,5 +65,9 @@ class BookmarkManager < Sinatra::Base
     redirect '/bookmarks'
   end
 
+  get '/log-in' do
+    erb :'users/log_in'
+  end
+
   run! if app_file == $0
 end
