@@ -40,7 +40,7 @@ feature 'Log in & out' do
 
     click_button('Log out')
 
-    expect(page).not_to have_content 'Welcome, test@example.com'
+    expect(page).to have_content 'Welcome to Bookmark Manager'
     expect(page).to have_content 'You have logged out.'
   end
 end

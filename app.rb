@@ -6,25 +6,31 @@ require './lib/comment'
 require './lib/user'
 
 class BookmarkManager < Sinatra::Base
-  configure :development do
+  configure :development, :test do
     register Sinatra::Reloader
+    register Sinatra::Flash
+    enable :sessions, :method_override
   end
-  
-  register Sinatra::Flash
 
-  enable :sessions, :method_override
+  def must_be_logged_in
+    if !session[:user_id]
+      redirect '/'
+    end
+  end
 
   get '/' do
     erb :'homepage'
   end
 
   get '/bookmarks' do
+    must_be_logged_in
     @user = User.find(id: session[:user_id])
     @bookmarks = Bookmark.all
     erb :'bookmarks/index'
   end
 
   get '/bookmarks/new' do
+    must_be_logged_in
     erb :'bookmarks/new'
   end
 
@@ -39,6 +45,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/bookmarks/:id/edit' do
+    must_be_logged_in
     @bookmark = Bookmark.find(id: params[:id])
     erb :'bookmarks/edit'
   end
@@ -49,6 +56,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/bookmarks/:id/comments/new' do
+    must_be_logged_in
     @bookmark = Bookmark.find(id: params['id'])
     erb :'comments/new'
   end
@@ -86,7 +94,7 @@ class BookmarkManager < Sinatra::Base
   post '/log-in/destroy' do
     session.clear
     flash[:notice] = 'You have logged out.'
-    redirect '/bookmarks'
+    redirect '/'
   end
 
   run! if app_file == $0

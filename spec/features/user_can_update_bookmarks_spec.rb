@@ -1,7 +1,11 @@
 feature "Update bookmarks" do
   scenario "user can update bookmarks" do
     bookmark = Bookmark.create(url: 'http://www.makersacademy.com/', title: 'Makers Academy')
-    visit '/bookmarks'
+    User.create(email: 'feature@example.com', password: '758485y4389')
+    visit '/log-in'
+    fill_in 'email', with: 'feature@example.com'
+    fill_in 'password', with: '758485y4389'
+    click_button 'Log in'
     expect(page).to have_link('Makers Academy', href: "http://www.makersacademy.com/")
     first('.bookmark').click_button 'Edit'
     expect(current_path).to eq "/bookmarks/#{bookmark.id}/edit"

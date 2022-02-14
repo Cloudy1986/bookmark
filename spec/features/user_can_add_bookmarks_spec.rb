@@ -1,6 +1,11 @@
 feature "Add bookmarks" do
   scenario "a user can add bookmarks" do
-    visit "/bookmarks/new"
+    User.create(email: 'feature@example.com', password: '758485y4389')
+    visit '/log-in'
+    fill_in 'email', with: 'feature@example.com'
+    fill_in 'password', with: '758485y4389'
+    click_button 'Log in'
+    click_button 'Add a new bookmark'
     fill_in('url', with: 'http://example.org')
     fill_in('title', with: 'Example bookmark title')
     click_button('Submit')
