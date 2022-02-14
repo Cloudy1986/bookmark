@@ -47,6 +47,7 @@ Set up the development database and `bookmarks` table:
 4. Run the query saved in the file `01_create_bookmarks_table.sql`
 5. Run the query saved in the file `02_add_title_column_bookmarks_table.sql`
 6. Run the query saved in the file `03_create_comments_table.sql`
+7. Run the query saved in the file `04_create_users_table.sql`
 
 Set up the test database and `bookmarks` table:
 
@@ -56,3 +57,4 @@ Set up the test database and `bookmarks` table:
 4. Run the query saved in the file `01_create_bookmarks_table.sql`
 5. Run the query saved in the file `02_add_title_column_bookmarks_table.sql`
 6. Run the query saved in the file `03_create_comments_table.sql`
+7. Run the query saved in the file `04_create_users_table.sql`
