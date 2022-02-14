@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/bookmark'
 require './lib/comment'
+require './lib/user'
 
 class BookmarkManager < Sinatra::Base
   configure :development do
@@ -58,8 +59,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/sign-up' do
-    # p params
-    # User.create(email: params['email'], password: params['password'])
+    User.create(email: params['email'], password: params['password'])
     redirect '/bookmarks'
   end
 
