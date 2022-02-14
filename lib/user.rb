@@ -19,4 +19,15 @@ class User
     User.new(id: result[0]['id'], email: result[0]['email'])
   end
 
+  def self.find(id:)
+    return nil unless id
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'bookmark_manager_post_course_test')
+    else
+      connection = PG.connect(dbname: 'bookmark_manager_post_course')
+    end
+    result = connection.exec_params("SELECT * FROM users WHERE id = $1;", [id])
+    User.new(id: result[0]['id'], email: result[0]['email'])
+  end
+
 end
