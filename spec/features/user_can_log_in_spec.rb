@@ -1,4 +1,4 @@
-feature 'Log in' do
+feature 'Log in & out' do
   scenario 'user can log in' do
     User.create(email: 'feature@example.com', password: '758485y4389')
     visit '/log-in'
@@ -29,5 +29,18 @@ feature 'Log in' do
 
     expect(page).not_to have_content 'Welcome feature@example.com'
     expect(page).to have_content 'Please check your email or password.'
+  end
+
+  scenario 'a user can log out' do
+    User.create(email: 'test@example.com', password: 'password123')
+    visit '/log-in'
+    fill_in 'email', with: 'test@example.com'
+    fill_in 'password', with: 'password123'
+    click_button 'Log in'
+
+    click_button('Log out')
+
+    expect(page).not_to have_content 'Welcome, test@example.com'
+    expect(page).to have_content 'You have logged out.'
   end
 end
