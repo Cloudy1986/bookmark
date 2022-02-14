@@ -9,6 +9,7 @@ gem 'sinatra-contrib'
 gem 'rspec'
 gem 'capybara'
 gem 'pg'
+gem 'bcrypt'
 
 group :development, :test do
   gem "rubocop", "1.20"
