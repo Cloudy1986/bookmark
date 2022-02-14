@@ -15,7 +15,7 @@ class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
 
   get '/' do
-    'Bookmark Manager'
+    erb :'homepage'
   end
 
   get '/bookmarks' do
