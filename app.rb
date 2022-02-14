@@ -57,5 +57,10 @@ class BookmarkManager < Sinatra::Base
     erb :'users/new'
   end
 
+  post '/sign-up' do
+    p params
+    redirect '/bookmarks'
+  end
+
   run! if app_file == $0
 end
