@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'sinatra/flash'
 require './lib/bookmark'
 require './lib/comment'
 require './lib/user'
@@ -8,6 +9,8 @@ class BookmarkManager < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end
+  
+  register Sinatra::Flash
 
   enable :sessions, :method_override
 
@@ -65,8 +68,8 @@ class BookmarkManager < Sinatra::Base
     redirect '/bookmarks'
   end
 
-  get '/log-in/new' do
-    erb :'users/log_in_new'
+  get '/log-in' do
+    erb :'users/log_in'
   end
 
   post '/log-in' do
@@ -75,7 +78,8 @@ class BookmarkManager < Sinatra::Base
       session[:user_id] = user.id
       redirect '/bookmarks'
     else
-      redirect '/log-in/new'
+      flash[:notice] = 'Please check your email or password.'
+      redirect '/log-in'
     end
   end
 

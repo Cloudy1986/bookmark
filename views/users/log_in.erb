@@ -1,5 +1,7 @@
 <h1>Log in</h1>
 
+<%= flash[:notice] %>
+
 <form action="/log-in" method="post">
   <label for="email">Email address:</label>
   <input type="text" name="email">

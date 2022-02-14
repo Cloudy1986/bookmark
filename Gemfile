@@ -10,6 +10,7 @@ gem 'rspec'
 gem 'capybara'
 gem 'pg'
 gem 'bcrypt'
+gem 'sinatra-flash'
 
 group :development, :test do
   gem "rubocop", "1.20"
