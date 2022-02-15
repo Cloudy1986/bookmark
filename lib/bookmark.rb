@@ -11,13 +11,13 @@ class Bookmark
     @user_id = user_id
   end
 
-  def self.all
+  def self.find_users_bookmarks(user_id:)
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'bookmark_manager_post_course_test')
     else
       connection = PG.connect(dbname: 'bookmark_manager_post_course')
     end
-    result = connection.exec("SELECT * FROM bookmarks;")
+    result = connection.exec("SELECT * FROM bookmarks WHERE user_id = $1;", [user_id])
     result.map do |bookmark|
       Bookmark.new(id: bookmark['id'], title: bookmark['title'], url: bookmark['url'], user_id: bookmark['user_id'])
     end

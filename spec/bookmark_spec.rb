@@ -5,14 +5,14 @@ describe Bookmark do
 
   let(:comment_class) { double(:comment_class) }
 
-  describe '.all' do
-    it 'returns all bookmarks' do
+  describe '.find_users_bookmarks' do
+    it 'returns all bookmarks for a user' do
       connection = PG.connect(dbname: 'bookmark_manager_post_course_test')
       user = User.create(email: 'test@example.com', password: '123456')
       bookmark = Bookmark.create(url: 'http://www.makersacademy.com/', title: 'Makers Academy', user_id: user.id)
       Bookmark.create(url: 'http://www.destroyallsoftware.com', title: 'Destroy all software', user_id: user.id)
       Bookmark.create(url: 'http://www.google.com/', title: 'Google', user_id: user.id)
-      bookmarks = Bookmark.all
+      bookmarks = Bookmark.find_users_bookmarks(user_id: user.id)
       expect(bookmarks.length).to eq 3
       expect(bookmarks.first).to be_a Bookmark
       expect(bookmarks.first.id).to eq bookmark.id
@@ -41,7 +41,7 @@ describe Bookmark do
       user = User.create(email: 'laurel@example.com', password: 'kbjdsfbb')
       bookmark = Bookmark.create(url: 'http://www.example.org', title: 'Example bookmark title', user_id: user.id)
       Bookmark.delete(id: bookmark.id)
-      expect(Bookmark.all.length).to eq 0
+      expect(Bookmark.find_users_bookmarks(user_id: user.id).length).to eq 0
     end
   end
 
