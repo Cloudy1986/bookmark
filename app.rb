@@ -35,7 +35,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/bookmarks' do
-    Bookmark.create(url: params[:url], title: params[:title])
+    Bookmark.create(url: params[:url], title: params[:title], user_id: session[:user_id])
     redirect '/bookmarks'
   end
 
@@ -51,7 +51,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   patch '/bookmarks/:id' do
-    Bookmark.update(id: params[:id], title: params[:title], url: params[:url])
+    Bookmark.update(id: params[:id], title: params[:title], url: params[:url], user_id: session[:user_id])
     redirect '/bookmarks'
   end
 

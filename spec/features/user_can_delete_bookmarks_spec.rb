@@ -1,7 +1,7 @@
 feature "Delete bookmarks" do
   scenario "a user can visit /bookmarks and delete bookmarks" do
-    Bookmark.create(url: 'http://www.makersacademy.com/', title: 'Makers Academy')
-    User.create(email: 'feature@example.com', password: '758485y4389')
+    user = User.create(email: 'feature@example.com', password: '758485y4389')
+    Bookmark.create(url: 'http://www.makersacademy.com/', title: 'Makers Academy', user_id: user.id)
     visit '/log-in'
     fill_in 'email', with: 'feature@example.com'
     fill_in 'password', with: '758485y4389'

@@ -1,7 +1,7 @@
 feature "Update bookmarks" do
   scenario "user can update bookmarks" do
-    bookmark = Bookmark.create(url: 'http://www.makersacademy.com/', title: 'Makers Academy')
-    User.create(email: 'feature@example.com', password: '758485y4389')
+    user = User.create(email: 'feature@example.com', password: '758485y4389')
+    bookmark = Bookmark.create(url: 'http://www.makersacademy.com/', title: 'Makers Academy', user_id: user.id)
     visit '/log-in'
     fill_in 'email', with: 'feature@example.com'
     fill_in 'password', with: '758485y4389'
