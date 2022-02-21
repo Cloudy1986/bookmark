@@ -60,3 +60,11 @@ Set up the test database and `bookmarks` table:
 6. Run the query saved in the file `03_create_comments_table.sql`
 7. Run the query saved in the file `04_create_users_table.sql`
 8. Run the query saved in the file `05_add_user_id_column_to_bookmarks_table.sql`
+
+## Running the app
+
+1. Clone this repo
+2. Run `bundle install` via your terminal
+3. Set up development and test databases following the instructions in the section above
+4. Start the server using `rackup` in the terminal
+5. Visit your local host and start playing with the app!
